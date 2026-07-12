@@ -6,11 +6,11 @@
   "author": "wsloom contributors",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wsloom/loom.git",
+    "url": "git+https://github.com/aslabs/wsloom.git",
     "directory": "packages/core"
   },
-  "homepage": "https://github.com/wsloom/loom/tree/master/packages/core#readme",
-  "bugs": "https://github.com/wsloom/loom/issues",
+  "homepage": "https://github.com/aslabs/wsloom/tree/master/packages/core#readme",
+  "bugs": "https://github.com/aslabs/wsloom/issues",
   "keywords": [
     "rpc",
     "websocket",

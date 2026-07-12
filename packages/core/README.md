@@ -1,6 +1,6 @@
 # @wsloom/core
 
-Core protocol, router, types, errors, and middleware for [Loom RPC](https://github.com/wsloom/loom).
+Core protocol, router, types, errors, and middleware for [Loom RPC](https://github.com/aslabs/wsloom).
 
 ## Install
 
@@ -20,7 +20,7 @@ export const appRouter = rpc.router({
 });
 ```
 
-See the [quick start guide](https://github.com/wsloom/loom/blob/master/docs/quick-start.md).
+See the [quick start guide](https://github.com/aslabs/wsloom/blob/master/docs/quick-start.md).
 
 ## License
 

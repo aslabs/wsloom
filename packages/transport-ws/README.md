@@ -1,6 +1,6 @@
 # @wsloom/transport-ws
 
-WebSocket transport for [Loom RPC](https://github.com/wsloom/loom).
+WebSocket transport for [Loom RPC](https://github.com/aslabs/wsloom).
 
 ## Install
 
@@ -26,7 +26,7 @@ import { createWebSocketTransport } from "@wsloom/transport-ws/node";
 const transport = createWebSocketTransport({ url: "ws://localhost:3001" });
 ```
 
-See the [quick start guide](https://github.com/wsloom/loom/blob/master/docs/quick-start.md).
+See the [quick start guide](https://github.com/aslabs/wsloom/blob/master/docs/quick-start.md).
 
 ## License
 

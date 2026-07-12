@@ -1,6 +1,6 @@
 # @wsloom/server
 
-Server connection handler with middleware and context for [Loom RPC](https://github.com/wsloom/loom).
+Server connection handler with middleware and context for [Loom RPC](https://github.com/aslabs/wsloom).
 
 ## Install
 
@@ -22,7 +22,7 @@ const server = createServer({
 server.handleConnection(transport);
 ```
 
-See the [quick start guide](https://github.com/wsloom/loom/blob/master/docs/quick-start.md).
+See the [quick start guide](https://github.com/aslabs/wsloom/blob/master/docs/quick-start.md).
 
 ## License
 

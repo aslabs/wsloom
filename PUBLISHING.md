@@ -13,9 +13,7 @@ Packages will publish as `@wsloom/core`, `@wsloom/client`, etc.
 
 ## 2. GitHub repository
 
-1. Create a GitHub repo (e.g. `wsloom/loom`)
-2. Push this monorepo to `master`
-3. Update `repository` URLs in package.json files if your org/repo differs from `github.com/wsloom/loom`
+1. Push this monorepo to `master` at [github.com/aslabs/wsloom](https://github.com/aslabs/wsloom)
 
 ## 3. GitHub secret
 

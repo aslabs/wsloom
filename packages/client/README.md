@@ -1,6 +1,6 @@
 # @wsloom/client
 
-Type-safe RPC client with a proxy API for [Loom RPC](https://github.com/wsloom/loom).
+Type-safe RPC client with a proxy API for [Loom RPC](https://github.com/aslabs/wsloom).
 
 ## Install
 
@@ -22,7 +22,7 @@ const client = createClient(appRouter, {
 const result = await client.ping();
 ```
 
-See the [quick start guide](https://github.com/wsloom/loom/blob/master/docs/quick-start.md).
+See the [quick start guide](https://github.com/aslabs/wsloom/blob/master/docs/quick-start.md).
 
 ## License
 
