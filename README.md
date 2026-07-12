@@ -1,4 +1,4 @@
-# Loom
+# WSLoom
 
 TypeScript-first RPC over WebSocket with zero code generation and full end-to-end type inference.
 
