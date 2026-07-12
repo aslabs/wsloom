@@ -1,8 +1,32 @@
 {
-  "name": "@loom/client",
-  "version": "0.0.1",
+  "name": "@wsloom/client",
+  "version": "0.1.0",
   "description": "Loom RPC client with proxy and type inference",
+  "license": "Apache-2.0",
+  "author": "wsloom contributors",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wsloom/loom.git",
+    "directory": "packages/client"
+  },
+  "homepage": "https://github.com/wsloom/loom/tree/master/packages/client#readme",
+  "bugs": "https://github.com/wsloom/loom/issues",
+  "keywords": [
+    "rpc",
+    "websocket",
+    "typescript",
+    "realtime",
+    "websocket-rpc",
+    "wsloom",
+    "client",
+    "proxy",
+    "type-inference"
+  ],
   "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -13,18 +37,27 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
-    "clean": "rm -rf dist"
+    "clean": "rm -rf dist",
+    "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@loom/core": "workspace:*"
+    "@wsloom/core": "workspace:*"
   },
   "devDependencies": {
-    "@loom/server": "workspace:*",
+    "@wsloom/server": "workspace:*",
     "@types/node": "^22.15.21",
     "tsup": "^8.5.0",
     "vitest": "^3.2.4"

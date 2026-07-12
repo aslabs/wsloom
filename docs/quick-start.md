@@ -5,13 +5,19 @@ Loom is a TypeScript-first RPC framework over WebSocket with full type inference
 ## Install
 
 ```bash
-pnpm add @loom/core @loom/client @loom/server @loom/transport-ws
+npm install @wsloom/core @wsloom/client @wsloom/server @wsloom/transport-ws
+```
+
+Or with pnpm:
+
+```bash
+pnpm add @wsloom/core @wsloom/client @wsloom/server @wsloom/transport-ws
 ```
 
 ## Define a Router
 
 ```ts
-import { rpc } from "@loom/core";
+import { rpc } from "@wsloom/core";
 
 export const appRouter = rpc.router({
   users: {
@@ -39,8 +45,8 @@ export type AppRouter = typeof appRouter;
 
 ```ts
 import { WebSocketServer } from "ws";
-import { createServer } from "@loom/server";
-import { WebSocketTransport } from "@loom/transport-ws/node";
+import { createServer } from "@wsloom/server";
+import { WebSocketTransport } from "@wsloom/transport-ws/node";
 import { appRouter } from "./router";
 
 const rpcServer = createServer({
@@ -70,8 +76,8 @@ wss.on("connection", (socket) => {
 ## Create a Client
 
 ```ts
-import { createClient } from "@loom/client";
-import { createWebSocketTransport } from "@loom/transport-ws/browser";
+import { createClient } from "@wsloom/client";
+import { createWebSocketTransport } from "@wsloom/transport-ws/browser";
 import { appRouter, type AppRouter } from "./router";
 
 const transport = createWebSocketTransport({
@@ -101,7 +107,7 @@ controller.abort();
 Server handlers can throw `RpcError`:
 
 ```ts
-import { RpcError, ErrorCodes } from "@loom/core";
+import { RpcError, ErrorCodes } from "@wsloom/core";
 
 throw new RpcError({
   code: ErrorCodes.NOT_FOUND,
@@ -115,10 +121,10 @@ Clients receive rehydrated `RpcError` instances on rejected promises.
 
 | Package | Purpose |
 |---------|---------|
-| `@loom/core` | Protocol, router, types, errors, middleware |
-| `@loom/client` | Proxy client with type inference |
-| `@loom/server` | Connection handler and middleware pipeline |
-| `@loom/transport-ws` | WebSocket transport (browser + Node) |
+| `@wsloom/core` | Protocol, router, types, errors, middleware |
+| `@wsloom/client` | Proxy client with type inference |
+| `@wsloom/server` | Connection handler and middleware pipeline |
+| `@wsloom/transport-ws` | WebSocket transport (browser + Node) |
 
 ## Next Steps
 

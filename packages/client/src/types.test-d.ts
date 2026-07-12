@@ -1,7 +1,7 @@
 import { expectTypeOf, test } from "vitest";
-import { rpc, type InferRouterClient } from "@loom/core";
+import { rpc, type InferRouterClient } from "@wsloom/core";
 import { createClient } from "./createClient.js";
-import { MemoryTransport } from "@loom/core";
+import { MemoryTransport } from "@wsloom/core";
 
 const appRouter = rpc.router({
   users: {

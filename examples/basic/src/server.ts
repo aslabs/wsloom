@@ -3,9 +3,9 @@ import { readFileSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { WebSocketServer } from "ws";
-import { rpc, type HandlerArgs } from "@loom/core";
-import { createServer as createRpcServer } from "@loom/server";
-import { WebSocketTransport } from "@loom/transport-ws/node";
+import { rpc, type HandlerArgs } from "@wsloom/core";
+import { createServer as createRpcServer } from "@wsloom/server";
+import { WebSocketTransport } from "@wsloom/transport-ws/node";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT = 3000;
@@ -42,7 +42,7 @@ const wss = new WebSocketServer({ server: httpServer });
 
 wss.on("connection", (socket) => {
   const transport = new WebSocketTransport({
-    createSocket: () => socket as unknown as import("@loom/transport-ws").WebSocketLike,
+    createSocket: () => socket as unknown as import("@wsloom/transport-ws").WebSocketLike,
   });
 
   void transport.connect().then(() => {

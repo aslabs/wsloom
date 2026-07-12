@@ -17,7 +17,7 @@ import {
   type Middleware,
   type ConnectionMeta,
   type FormatErrorFn,
-} from "@loom/core";
+} from "@wsloom/core";
 
 export type CreateContextFn<TContext> = (opts: {
   meta: ConnectionMeta;

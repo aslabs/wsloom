@@ -1,4 +1,4 @@
-import type { Transport, TransportReadyState } from "@loom/core";
+import type { Transport, TransportReadyState } from "@wsloom/core";
 
 type Listener<T extends unknown[]> = (...args: T) => void;
 

@@ -5,9 +5,9 @@ import {
   ErrorCodes,
   createLinkedTransports,
   type HandlerArgs,
-} from "@loom/core";
-import { createServer } from "@loom/server";
-import { createClient } from "@loom/client";
+} from "@wsloom/core";
+import { createServer } from "@wsloom/server";
+import { createClient } from "@wsloom/client";
 
 describe("integration", () => {
   const appRouter = rpc.router({

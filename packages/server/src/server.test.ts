@@ -3,8 +3,8 @@ import {
   rpc,
   ErrorCodes,
   createLinkedTransports,
-} from "@loom/core";
-import { createServer } from "@loom/server";
+} from "@wsloom/core";
+import { createServer } from "@wsloom/server";
 
 describe("server", () => {
   it("returns METHOD_NOT_FOUND for unknown procedures", async () => {

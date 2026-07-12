@@ -12,7 +12,7 @@ import {
   type ClientCallOptions,
   type InferRouterClient,
   type Procedure,
-} from "@loom/core";
+} from "@wsloom/core";
 
 export type CreateClientOptions = {
   transport: Transport;
