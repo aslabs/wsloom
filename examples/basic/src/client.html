@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loom Basic Example</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 640px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      button {
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+      pre {
+        background: #f4f4f5;
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Loom RPC Basic Example</h1>
+    <p>Query and stream RPC over WebSocket.</p>
+
+    <button id="greet">Call greet.query</button>
+    <button id="stream">Start counter stream</button>
+    <button id="stop">Stop stream</button>
+
+    <pre id="output">Waiting for actions...</pre>
+
+    <script type="module">
+      const output = document.getElementById("output");
+      const log = (message) => {
+        output.textContent = message;
+      };
+
+      let streamIterator = null;
+      let streamAbort = null;
+
+      const ws = new WebSocket(`ws://${location.host}`);
+
+      const pending = new Map();
+      let requestCounter = 0;
+
+      const send = (message) => ws.send(JSON.stringify(message));
+
+      ws.addEventListener("message", (event) => {
+        const message = JSON.parse(event.data);
+        const entry = pending.get(message.id);
+        if (!entry) return;
+
+        switch (message.kind) {
+          case "res":
+            pending.delete(message.id);
+            entry.resolve(message.result);
+            break;
+          case "err":
+            pending.delete(message.id);
+            entry.reject(Object.assign(new Error(message.error.message), message.error));
+            break;
+          case "chunk":
+            entry.onChunk?.(message.value);
+            break;
+          case "end":
+            pending.delete(message.id);
+            entry.onEnd?.();
+            break;
+        }
+      });
+
+      function call(method, params) {
+        const id = String(++requestCounter);
+        return new Promise((resolve, reject) => {
+          pending.set(id, { resolve, reject });
+          send({ v: 1, kind: "req", id, method, params });
+        });
+      }
+
+      function stream(method, params, onChunk) {
+        const id = String(++requestCounter);
+        return new Promise((resolve, reject) => {
+          pending.set(id, {
+            resolve,
+            reject,
+            onChunk,
+            onEnd: resolve,
+          });
+          send({ v: 1, kind: "req", id, method, params });
+        });
+      }
+
+      function cancel(id) {
+        send({ v: 1, kind: "cancel", id });
+        pending.delete(id);
+      }
+
+      document.getElementById("greet").addEventListener("click", async () => {
+        try {
+          const result = await call("greet", { name: "Loom" });
+          log(JSON.stringify(result, null, 2));
+        } catch (error) {
+          log(`Error: ${error.message}`);
+        }
+      });
+
+      document.getElementById("stream").addEventListener("click", async () => {
+        const lines = [];
+        log("Streaming...");
+        stream("counter", { max: 5 }, (value) => {
+          lines.push(JSON.stringify(value));
+          log(lines.join("\n"));
+        }).then(() => {
+          lines.push("Stream complete");
+          log(lines.join("\n"));
+        });
+      });
+
+      document.getElementById("stop").addEventListener("click", () => {
+        log("Use browser refresh to reset connection for this minimal demo.");
+      });
+    </script>
+  </body>
+</html>

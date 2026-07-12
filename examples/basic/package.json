@@ -1,0 +1,21 @@
+{
+  "name": "basic-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/server.ts",
+    "build": "echo \"No build step\""
+  },
+  "dependencies": {
+    "@loom/client": "workspace:*",
+    "@loom/core": "workspace:*",
+    "@loom/server": "workspace:*",
+    "@loom/transport-ws": "workspace:*",
+    "ws": "^8.18.2"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}
